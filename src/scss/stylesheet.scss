@@ -1,0 +1,358 @@
+/* variables */
+
+$mainfont: 'Josefin Sans', sans-serif;
+$secfont: Quando;
+$thirdfont: 'FontAwesome';
+$bodycolor: #787878;
+$footercolor: #989898;
+$fontcolor: #111111;
+$hmargintop: 25px;
+$hmarginbottom: 20px;
+$hfontsize: font-size;
+$hovercolor: #35c4ce;
+
+body {
+    font-family: $secfont; // variable 
+    font-size: 15px;
+    color: $bodycolor; // variable 
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+p {
+    margin-bottom: 25px;
+    line-height: 1.6em;
+}
+
+a {
+    font-weight: 400;
+    text-decoration: none;
+    color: $fontcolor; // variable 
+    transition: .20s;
+}
+
+a:hover {
+    color: #999999;
+}
+
+
+/* mixin */
+
+@mixin htextstyle ($hfontsize, $hmargintop, $hmarginbottom){
+    margin-top: $hmargintop;
+    margin-bottom: $hmarginbottom;
+    font-family: $mainfont;
+    font-weight: 400;
+    line-height: 1.3em;
+    word-wrap: break-word;
+    color: $fontcolor;
+    font-size: $hfontsize;
+}
+
+h1 {
+    @include htextstyle(37px,$hmargintop,$hmarginbottom);
+}
+
+h2 {
+    @include htextstyle(31px,$hmargintop,$hmarginbottom);
+}
+
+h3 {
+    @include htextstyle(26px,$hmargintop,$hmarginbottom);
+}
+
+h4 {
+    @include htextstyle(21px,$hmargintop,$hmarginbottom);
+}
+
+h5 {
+    @include htextstyle(18px,$hmargintop,$hmarginbottom);
+}
+
+h6 {
+    @include htextstyle(15px,$hmargintop,$hmarginbottom);
+}
+
+
+.container {
+    width: 94%;
+    margin: 0 auto;
+}
+
+
+/* header and main nav */
+
+/* nesting */
+header {
+    font-family: $mainfont;
+
+    nav {
+        ul {
+            display: none;
+        }
+    }
+}
+
+.top-logo {
+    width: 200px;
+    margin: 20px auto 40px;
+}
+
+
+/* posts */
+article {
+    margin-bottom: 50px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.image-part {
+    margin-bottom: 10px;
+}
+
+/* nesting */
+.post-title {
+    margin-top: 0;
+
+    a {
+        color: #324360;
+        text-transform: uppercase;
+        font-size: 26px;
+        font-weight: 900;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        line-height: 1.3em;
+        transition: all .3s ease;
+    }
+
+    a:hover {
+        color: $hovercolor;
+    }
+}
+
+
+/* footer */
+
+/* nesting */
+footer {
+    padding: 30px 0;
+    text-align: center;
+    background: #eaf2ff;
+    color: $footercolor;
+
+    a {
+        color: $footercolor;
+    }
+
+    a:hover {
+        color: $fontcolor;
+    }
+}
+
+.footer-logo {
+    width: 200px;
+    margin: 20px auto;
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* nesting */
+.footer-social-links {
+    padding: 20px 0;
+    line-height: 2em;
+
+    a {
+        margin: 0 10px;
+        font-size: 16px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+
+    a span {
+        display: none;
+    }
+}
+
+#footer-copyright {
+    padding: 20px 0;
+    font-size: 12px;
+    color: $footercolor;
+}
+
+
+
+@media only screen and (min-width: 650px) {
+
+    .container {
+        width: 90%;
+    }
+
+    /* variables */
+    $memaincolor: #324360;
+    $hdisplay: flex;
+    $hjustify: center;
+    $halign: center;
+
+
+    /* mixin */
+    @mixin alignstyle ($hdisplay, $hjustify, $halign){
+        display: $hdisplay;
+        justify-content: $hjustify;
+        align-items: $halign;
+    }
+    
+    /* nesting */
+    header {
+
+        nav {
+            max-width: 1170px;
+            margin: 0 auto;
+            height: 60px;
+
+            @include alignstyle($hdisplay, $hjustify, $halign);
+
+
+            li.menu-item-has-children > a::after {
+                margin-left: 7px;
+                font-family: 'FontAwesome';
+                font-size: 13px;
+                color: $memaincolor; // variable 
+                content: '\f078';
+            }
+       
+
+        ul {
+            display: flex;
+
+            li {
+                margin: 0 15px;
+                position: relative;
+                line-height: 24px;
+            }
+
+                a {
+                    font-family: $mainfont; // variable 
+                    color: $memaincolor; // variable 
+                    letter-spacing: 1px;
+                    text-transform: uppercase;
+                    font-size: 12px;
+                    font-weight: 900;
+
+                    a:hover {
+                        color: $hovercolor; // variable 
+                    }
+                }
+            }
+        }
+                .current-menu-item a {
+                    border-bottom: 2px solid $memaincolor; // variable 
+                }
+
+    }
+ 
+
+    /* sub nav */
+
+    /* nesting */
+    header {
+        nav {
+            ul {
+
+                li:hover {                  
+                    ul {
+                        visibility: visible;
+                        opacity: 1;
+                    }
+                }
+              
+                ul {
+                    visibility: hidden;
+                    opacity: 0;
+                    display: block;
+                    position: absolute;
+                    z-index: 9999;
+                    left: 0;
+                    background: #f0f0f0;
+                    transition: all 0.2s ease-out;
+    
+          
+                    li {
+                        border-top: 1px solid #e9e9e9;
+                        margin: 0;
+    
+                        a {
+                            display: block;
+                            color: #111111;
+                            min-width: 175px;
+                            margin: 0;
+                            padding: 20px 10px;
+                            line-height: 1.4em;
+                            letter-spacing: 1px;
+                            transition: .35s;
+    
+                        
+                            a:hover {
+                                background: #ffffff;
+                                color: #000; 
+                            }                        
+                        }
+                    }
+                }  
+            }
+        }
+    }
+    
+
+
+
+    /* posts */
+
+    article {
+        display: flex;
+    }
+
+    /* nesting */
+    .image-part {
+        flex: 1;
+        overflow: hidden;
+        margin-bottom: 0;
+
+        img {
+            transition: transform 3.5s ease-in-out;
+        }
+
+        img:hover {
+            transform: scale(1.5,1.5);
+        }
+
+    }
+
+    .content-part {
+        flex: 1;
+        padding-left: 50px;
+    }
+
+
+
+    /* footer */
+
+    /* nesting */
+    .footer-social-links {
+        a {
+            margin: 0 28px;
+
+            span {
+                display: inline;
+                font-size: 11px;
+            }
+        }
+
+        i {
+        margin-right: 5px;
+        }
+    }
+   
+}

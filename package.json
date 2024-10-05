@@ -1,0 +1,18 @@
+{
+  "name": "assign3-css-precomiler",
+  "version": "1.0.0",
+  "scripts": {
+    "firstgo": "lite-server --baseDir=\"public\"",
+    "start": "concurrently \"npm run firstgo\" \"npm run firsttry\"",
+    "firsttry": "sass --watch src/scss:public/assets/css"
+  },
+  "author": "Xiaoling Cheng",
+  "license": "private",
+  "private": true,
+  "description": "",
+  "devDependencies": {
+    "concurrently": "^9.0.1",
+    "lite-server": "^2.6.1",
+    "sass": "^1.79.4"
+  }
+}
